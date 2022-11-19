@@ -4,12 +4,17 @@ import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 import PokemonList from "./components/PokemonList";
 import PokemonDetail from "./components/PokemonDetail";
 import RegisterForm from "./components/RegisterForm";
+import RequireAuth from "./components/RequiredAuth";
 import "./App.css";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <PokemonList />,
+    element: (
+      <RequireAuth>
+        <PokemonList />
+      </RequireAuth>
+    ),
   },
   {
     path: "/pokemon/:pokemonName",
