@@ -19,7 +19,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/pokemon/:pokemonName",
-    element: <PokemonDetail />,
+    element: (
+      <RequireAuth>
+        <PokemonDetail />
+      </RequireAuth>
+    ),
   },
   {
     path: "/signup",

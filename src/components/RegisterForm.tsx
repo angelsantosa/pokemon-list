@@ -13,9 +13,7 @@ const RegisterForm: React.FC = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const { register, handleSubmit } = useForm<FormType>({
-    defaultValues: { email: "angel.santos@geeklopers.mx" },
-  });
+  const { register, handleSubmit } = useForm<FormType>();
   const logIn = useAuthStore((state) => state.logIn);
 
   const onSubmit = (payload: FormType): void => {
