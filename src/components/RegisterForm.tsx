@@ -13,7 +13,7 @@ const RegisterForm: React.FC = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
 
-  const { register, handleSubmit } = useForm<FormType>();
+  const { register, handleSubmit, formState } = useForm<FormType>();
   const logIn = useAuthStore((state) => state.logIn);
 
   const onSubmit = (payload: FormType): void => {
@@ -26,10 +26,14 @@ const RegisterForm: React.FC = () => {
       <h1>Register</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Input
-          {...register("email")}
+          {...register("email", {
+            required: true,
+            validate: (value) => value.includes("@"),
+          })}
           type="text"
           placeholder="Email"
           sx={{ marginBottom: 16 }}
+          invalid={!!formState.errors.email}
         />
         <Button type="submit">Register</Button>
       </form>
